@@ -1173,7 +1173,7 @@ class SettingsInteractionHandler(
             SettingId.PlayerCdnPreference -> {
                 val options =
                     listOf(
-                        blbl.cat3399.core.prefs.AppPrefs.PLAYER_CDN_BILIVIDEO to "bilivideo（默认）",
+                        blbl.cat3399.core.prefs.AppPrefs.PLAYER_CDN_BILIVIDEO to "bilivideo（默认[Roger改]）",
                         blbl.cat3399.core.prefs.AppPrefs.PLAYER_CDN_MCDN to "mcdn（部分网络更快/更慢）",
                     )
                 val checked = options.indexOfFirst { it.first == prefs.playerCdnPreference }.coerceAtLeast(0)
