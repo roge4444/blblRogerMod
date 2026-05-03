@@ -2716,15 +2716,31 @@ class PlayerActivity : BaseActivity() {
     private fun effectiveTargetAudioIdForLog(): Int = session.targetAudioId.takeIf { it > 0 } ?: session.preferAudioId
 
     private fun selectCdnUrlsFromTrack(obj: JSONObject, preference: String): List<String> {
+        val twBestCdnHost = "cn-jxnc-cmcc-bcache-06.bilivideo.com"
+        fun replaceHost(url: String, host: String): String {
+            return runCatching {
+                val uri = Uri.parse(url)
+                uri.buildUpon().encodedAuthority(host).build().toString()
+            }.getOrDefault("")
+        }
+
         val candidates = buildList {
             val base =
                 obj.optString("baseUrl", obj.optString("base_url", obj.optString("url", "")))
                     .trim()
-            if (base.isNotBlank()) add(base)
+            if (base.isNotBlank()) {
+                val replacedBase = replaceHost(base, twBestCdnHost)
+                if (replacedBase.isNotBlank()) add(replacedBase)
+                add(base)
+            }
             val backup = obj.optJSONArray("backupUrl") ?: obj.optJSONArray("backup_url") ?: JSONArray()
             for (i in 0 until backup.length()) {
                 val u = backup.optString(i, "").trim()
-                if (u.isNotBlank()) add(u)
+                if (u.isNotBlank()) {
+                    val replacedU = replaceHost(u, twBestCdnHost)
+                    if (replacedU.isNotBlank()) add(replacedU)
+                    add(u)
+                }
             }
         }.distinct()
         if (candidates.isEmpty()) return emptyList()
