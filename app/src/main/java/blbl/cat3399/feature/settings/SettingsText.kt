@@ -162,7 +162,7 @@ object SettingsText {
     fun cdnText(code: String): String =
         when (code) {
             blbl.cat3399.core.prefs.AppPrefs.PLAYER_CDN_MCDN -> "mcdn"
-            else -> "bilivideo"
+            else -> "bilivideo[Roger改]"
         }
 
     fun seekStepSecondsText(seconds: Int): String = "${seconds.coerceAtLeast(0)}秒"
