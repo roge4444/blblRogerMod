@@ -1084,7 +1084,7 @@ class AppPrefs(context: Context) {
         const val DEFAULT_UA =
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
 
-        const val PLAYER_CDN_BILIVIDEO = "bilivideo"
+        const val PLAYER_CDN_BILIVIDEO = "bilivideo[Roger改]"
         const val PLAYER_CDN_MCDN = "mcdn"
 
         const val DANMAKU_LANE_DENSITY_SPARSE = "sparse"
